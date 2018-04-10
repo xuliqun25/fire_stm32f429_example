@@ -1,0 +1,11 @@
+#ifndef _USER_UART_H_
+#define _USER_UART_H_
+
+
+#define USER_UART_BUFF_LEN			128
+#define USER_UART_PORT				UART_FOR_APP
+#define USER_UART_RECV_BUFF_LEN		128
+#define USER_UART_RECV_TIMEOUT		500
+
+
+#endif

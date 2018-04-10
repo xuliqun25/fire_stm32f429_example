@@ -1,0 +1,132 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=205150532
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[JLinkDriver]
+CStepIntDis=_ 0
+[SWOTraceHWSettings]
+OverrideDefaultClocks=0
+CpuClock=72000000
+ClockAutoDetect=0
+ClockWanted=2000000
+JtagSpeed=2000000
+Prescaler=36
+TimeStampPrescIndex=0
+TimeStampPrescData=0
+PcSampCYCTAP=1
+PcSampPOSTCNT=15
+PcSampIndex=0
+DataLogMode=0
+ITMportsEnable=0
+ITMportsTermIO=0
+ITMportsLogFile=0
+ITMlogFile=$PROJ_DIR$\ITM.log
+[struct_types]
+Fmt0=TOUCH_X_Y_P-FingerX	4	0
+Fmt1=TOUCH_X_Y_P-FingerY	4	0
+Fmt2=struct ChipSetting-Data1	4	0
+Fmt3=struct ChipSetting-Data2	4	0
+Fmt4=struct ChipSetting-No	4	0
+Fmt5=struct ChipSetting-Reg	4	0
+[array_types]
+Fmt0=uint32_t[10]	4	0
+Fmt1=uint8_t[10]	4	0
+[watch_formats]
+Fmt0={W}1:EventStatus	4	0
+Fmt1={W}1:FingerInfo	4	0
+Fmt2={W}1:p	4	0
+Fmt3={W}1:result	4	0
+Fmt4={W}1:touch_status	4	0
+Fmt5={W}1:width	4	0
+Fmt6={W}1:xpos	4	0
+Fmt7={W}1:ypos	4	0
+[Trace2]
+Enabled=0
+ShowSource=0
+[SWOTraceWindow]
+PcSampling=0
+InterruptLogs=0
+ForcedTimeStamps=0
+EventCPI=0
+EventEXC=0
+EventFOLD=0
+EventLSU=0
+EventSLEEP=0
+[PowerLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=0
+Title_0=I0
+Symbol_0=0 4 1
+LiveEnabled=0
+LiveFile=PowerLogLive.log
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[EventLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[PowerProbe]
+Frequency=10000
+Probe0=I0
+ProbeSetup0=2 1 1 2 0 0
+[DriverProfiling]
+Enabled=0
+Mode=3
+Graph=0
+Symbiont=0
+Exclusions=
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Bp0=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\Demos\ssd2543\ssd2543_test.c}.20.3" 0 0 1 "" 0 "" 0
+Bp1=_ 0 "EMUL_CODE" "0x20005B28" 0 0 1 "" 0 "" 0
+Bp2=_ 0 "EMUL_CODE" "{$PROJ_DIR$\..\..\..\..\..\fire_2016_03_11}.179.5" 0 0 1 "" 0 "" 0
+Count=3
+[Aliases]
+A0=_ "C:\Users\wangchao\Desktop\Project2\App\page_1.c" ""
+A1=_ "D:\work\tftp\mico\tftpc.c" ""
+A2=_ "\\psf\Home\develop\WICED_2_4_0\branch_for_merge\Wiced\RTOS\FreeRTOS\ver7.1.0\Source\portable\IAR\ARM_CM4F\portasm.s" ""
+Count=3
+SuppressDialog=1

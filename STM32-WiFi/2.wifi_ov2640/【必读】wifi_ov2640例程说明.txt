@@ -1,0 +1,67 @@
+wifi_ov2640例程说明：
+
+简介：
+  本例程演示开发板采集摄像头数据并通过WiFi传输到电脑上位机。
+
+网络连接模型如下：
+ 电脑<--有线或无线-->路由<--无线-->开发板
+
+ 实验中使用TCP协议传输数据，电脑作为TCP Client，开发板作为TCP Server。
+
+ 该联接模式是不经过外网(互联网)的，我们通过电脑端的上位机输出接收到的视频数据。
+
+ 说明：因为图片数据量巨大，目前尚未有免费的云端支持视频式的图片传输，且上传视频到云端对网络带宽流量要求高，外网扩展的方式很多，如有需要请自行查询相关知识，建议使用外网时降低图像采集的帧率和分辨率。（还需要改程序，把开发板改为TCP Client）
+
+操作步骤：
+1.遵守上一目录的“WiFi例程说明.txt”文档的前7条使用配置，务必先阅读该文件并配置。
+
+2.本程序仅支持配套的“秉火OV2640摄像头”，实验前必须给开发板接入该摄像头。
+
+3.本例程 不需要 下载bootloader程序，只下载demo程序即可（下载前要先配网）
+
+  --demo程序目录：
+	例程\Projects\STM32F429\demo\RVMDK\
+  使用MDK打开该目录下后缀为“.uvprojx”的文件即可。
+
+3.配网：
+  本程序不支持easy_link的配网功能，需要手动修改工程文件，
+
+  打开demo程序后，在MDK左侧的工程栏找到“Application\fire_demo.c”文件
+  文件头部有SSID_NAME及SSID_KEY常量，把它们的字符串内容改成路由名及密码即可：
+
+	//路由名
+	const char SSID_NAME[] = "路由名";
+	//路由密码
+	const char SSID_KEY[] = "密码";
+
+  注：电脑与开发板要连接在同一个路由，即在局域网内。
+
+
+3.检查开发板运行情况：
+  复位开发板后，检查串口调试助手的输出
+
+正常会输出类似如下的字符串：
+------------------------------------------------------------------------------------
+  程序正常运行的输出
+------------------------------------------------------------------------------------
+[10][Platform: mico_platform_common.c: 104] Platform initialised, build by RVMDK
+[596][WIFI: fire_demo.c:  92] connecting to BHLINK...
+[6719][WIFI: fire_demo.c:  52] Station up
+[6723][WIFI: fire_demo.c:  97] wifi connected successful
+[7561][TCP: tcp_server.c: 140] TCP server ip:192.168.1.103, port:20000
+[8561][WIFI: fire_demo.c: 143] camera capture frame counter： frame_count = 8
+[8568][WIFI: fire_demo.c: 144] DMA capture frame counter：dma_start_counter= 1
+[9576][WIFI: fire_demo.c: 143] camera capture frame counter： frame_count = 10
+[9583][WIFI: fire_demo.c: 144] DMA capture frame counter：dma_start_counter= 0
+[10591][WIFI: fire_demo.c: 143] camera capture frame counter： frame_count = 9
+--------------------------------------------------------------------------------------
+
+  注1：
+--其中“TCP server ip:192.168.1.103, port:20000”中的信息为开发板的IP及使用的TCP端口，不同环境下该参数不一样，后面使用上位机连接时，务必根据该实际信息进行配置
+
+  注2：
+--其中“camera capture frame counter： frame_count = 8”的数值表示摄像头实际的输出帧率。 
+--其中“DMA capture frame counter：dma_start_counter= 0”的数值表示STM32实际采集的帧率，该帧率约等于上传到上位机图像的帧率，未连接上位机时，该数值一般为0。
+
+4.连接上位机：
+  打开配套的摄像头调试助手，在网络调试功能页面中选择“TCP Client”协议，并输入上面通过串口调试助手获的开发板IP及端口，然后点击“连接”按钮，上位机即可接收并输出摄像头图像。

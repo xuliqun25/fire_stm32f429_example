@@ -1,0 +1,34 @@
+# Object files
+*.o
+*.lst
+*.axf
+*.hex
+*.bin
+
+#browsers information
+*.crf
+*.d
+*.dep
+*.icf
+*.ld
+*.map
+*.htm
+
+#prj information
+*.demo.uvguix.Administrator
+/Build
+
+
+# Libraries
+
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app

@@ -1,0 +1,99 @@
+fire_easylink_app例程说明：
+
+简介：
+  本例程演示如何与手机互联，可通过手机APP遥控开发板上的LED灯、蜂鸣器以及通过手机查看STM32板子上的温湿度传感器数据。
+
+网络连接模型如下：
+ 手机WiFi<--无线-->路由<--->互联网上的云端<--->路由<--无线-->开发板
+ 该联接模式是经过外网(互联网)的。
+
+
+操作步骤：
+1.遵守上一目录的“WiFi例程说明.txt”文档的前7条使用配置，务必先阅读该文件并配置。
+
+	再强调一遍boot引脚配置(使用跳线帽连接)：
+
+  		BOOT0 <---> GND
+  		BOOT1 <---> 3V3
+
+2.本例程采集温湿度数据时需要用到温湿度传感器（DHT11），需要给开发板接上该传感器。（不接该传感器也能正常运行，只是没有传感器数据）
+
+3.本例程需要先下载bootloader程序，再下载demo应用程序。
+  使用MDK打开工程，编译后分别点击“load”按钮下载即可。
+
+  --bootloader程序目录：
+	例程\Projects\STM32F429\bootloader\RVMDK\
+  使用MDK打开该目录下后缀为“.uvprojx”的文件即可。
+
+  --demo程序目录：
+	例程\Projects\STM32F429\demo\RVMDK\
+  使用MDK打开该目录下后缀为“.uvprojx”的文件即可。
+
+4.检查开发板运行情况：
+  复位开发板后，检查串口调试助手的输出，确认开发板运行环境及程序运行正常。
+
+正常会输出类似如下的字符串：
+------------------------------------------------------------------------------------
+  程序正常运行的输出
+------------------------------------------------------------------------------------
+[4][Platform: mico_platform_common.c: 104] Platform initialised, build by RVMDK
+[634][SYSTEM: system_misc.c: 235] Free memory 121436 bytes
+[641][SYSTEM: system_misc.c: 241] Kernel version: 31620002.042
+[647][SYSTEM: system_misc.c: 244] MiCO version: 2.4.0
+[653][SYSTEM: system_misc.c: 246] Wi-Fi driver version wl0: Nov  7 2014 16:03:45 version 5.90.230.12 FWI, mac C8:93:46:80:AE:56
+[667][SYSTEM: mico_system_init.c: 112] Empty configuration. Starting configuration mode...
+[679][CONFIG SERVER: config_server.c: 165] Config Server established at port: 8000, fd: 1
+[878][SYSTEM: system_easylink.c: 251] Start easylink combo mode
+--------------------------------------------------------------------------------------
+
+最后的start easylink combo mode表示开发板正在等待手机APP配置WIFI帐号及密码(配网)。
+
+配网过程如下：
+ 1.准备好一个能连接到互联网的WiFi
+ 2.手机连接好WiFi，打开配套的“秉火WiFi手机端APP”，点击界面右上角的“+”号添加设备。
+ 3.在该界面上输入WiFi名及密码，输入后点击搜索按钮
+ 4.此时串口会输出如下类似的信息，配网完成后，手机界面上会出现一个可选择的设备，点击该设备可进行绑定。
+ 5.绑定成功后，点击界面左上角的“<”可进入设备列表，选择设备后可出现信息及控制界面，该界面包含实时的温湿度传感器信息，还可对LED、蜂鸣器进行控制，可随意尝试各种功能。
+
+ 注1：若开发板没有接温湿度传感器(DHT11)，传感器的信息不会正常显示。
+
+ 注2：第一次连接，对开发板进行配网时，手机和开发板需要连接在同一个路由，配网成功后无此限制。
+      例如可以关闭手机的WiFi，使用3G/4G的方式接入互联网，同样可以接收最新的传感器信息并对开发板进行控制。
+
+------------------------------------------------------------------------------
+  开发板接收到配网信息后的输出
+---------------------------------------------------------------------------
+[9267][SYSTEM: system_easylink.c: 103] Get SSID: BHLINK, Key: cancore2015
+[9275][SYSTEM: system_easylink.c: 138] Get user info: 23 68 01 A8 C0 
+[9283][SYSTEM: system_easylink.c: 165] Get auth info: , EasyLink identifier: c0a80168
+[9294][SYSTEM: system_misc.c: 194] connect to BHLINK.....
+[16825][SYSTEM: system_misc.c:  84] Station up
+[17021][Config Delegate: MICOConfigDelegate.c: 225] Wi-Fi configed by: 1
+[17032][APP: MICOAppEntrance.c: 155] MICO CloudService: FogCloud.
+[17039][FOGCLOUD_IF: fogCloud.c: 129] FogCloud library version: 1.0.5
+[17047][FOG_UP_DATA: fogcloud_up_thread.c: 113] ------------upstream_thread start------------
+[17057][FogCloudService: FogCloudService.c: 647] service start...
+[17064][FogCloudService: FogCloudService.c: 653] service wait for activate...
+[17073][FogCloudService: FogCloudService.c: 665] device activated.
+[17080][FogCloudService: FogCloudService.c: 683] subscribe_topic=24a57d07/c8934680ae56/in/#     publish_topic=24a57d07/c8934680ae56/out
+[17095][FogCloudService: FogCloudService.c: 687] start MQTT client...
+[17102][MQTTClient: FogCloudMQTTClient.c:  74] mqtt client init
+[17109][FogCloudService: FogCloudService.c: 705] wait for MQTT client connect...
+[17118][CONFIG SERVER: config_server.c: 198] Exit: Config listener exit with err = 0
+[17128][uart_demo: uart_recv_thread.c:  52] ------------uart data recv thread start------------
+[17139][MQTTClient: FogCloudMQTTClient.c: 143] mqttClientThread start...
+[17147][MQTTClient: FogCloudMQTTClient.c: 183] MQTT socket network connect...
+[17155][MQTT_MICO: MQTTMICO.c: 212] connect to MQTT server api.easylink.io:1883
+[17577][FOG_UP_DATA: fogcloud_up_thread.c: 123] Module is not connected to the fogcloud!!!
+[18087][FOG_UP_DATA: fogcloud_up_thread.c: 123] Module is not connected to the fogcloud!!!
+[18597][FOG_UP_DATA: fogcloud_up_thread.c: 123] Module is not connected to the fogcloud!!!
+[19106][FOG_UP_DATA: fogcloud_up_thread.c: 123] Module is not connected to the fogcloud!!!
+[19364][MQTT_MICO: MQTTMICO.c: 224] MQTT server address: 121.40.214.219
+[19371][MQTT_MICO: MQTTMICO.c: 229] MQTT gethostbyname: addr=api.easylink.io ipStr=121.40.214.219 ip=2032719579 port=1883
+[19615][FOG_UP_DATA: fogcloud_up_thread.c: 123] Module is not connected to the fogcloud!!!
+[19745][MQTTClient: FogCloudMQTTClient.c: 199] MQTT socket network connect OK!
+[19753][MQTTClient: FogCloudMQTTClient.c: 219] MQTT client connect...
+[19761][MQTT_MICO: MQTTMICO.c: 163] readySock=1
+[19766][MQTT_MICO: MQTTMICO.c: 167] send rc=75
+[20092][MQTTClient: FogCloudMQTTClient.c: 234] MQTT client connect OK!
+-------------------------------------------------------------------------------------------------

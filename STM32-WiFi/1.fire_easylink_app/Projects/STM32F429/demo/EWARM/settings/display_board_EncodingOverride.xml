@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<userOverrides>
+  <override>
+    <path>C:\Users\wangchao\Desktop\Project2\App\page_1.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>C:\Users\wangchao\Desktop\Project2\gdui\ui_parser.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>C:\Users\wangchao\Desktop\Project2\malloc\malloc.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>D:\code\display_board\display_board_2015_12_20\Platform\Drivers\display\VGM128064\oled.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\code\display_board\display_board_2015_12_25\Platform\Drivers\SDRAM\malloc\inc\malloc.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>D:\code\display_board\display_board_2015_12_25\Platform\Drivers\SDRAM\malloc\src\malloc.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>D:\code\display_board\display_board_2015_12_26\Platform\Drivers\SDRAM\malloc\inc\malloc.h</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\code\display_board\display_board_2015_12_26\Platform\Drivers\SDRAM\malloc\src\malloc.c</path>
+    <encoding>UTF-8</encoding>
+  </override>
+  <override>
+    <path>D:\code\display_board\display_board_2015_12_26\Platform\Drivers\TFT-LCD\TIANMA-LCD\src\stm32f429i_lcd.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>D:\code\display_board\display_board_2015_12_27_1\Platform\Drivers\GUI_long\fat_fs\src\diskio.c</path>
+    <encoding>System</encoding>
+  </override>
+</userOverrides>
+
+
